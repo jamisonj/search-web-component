@@ -17,23 +17,22 @@
             let shadowRoot = this.attachShadow({mode: 'open'});
             shadowRoot.innerHTML = template;
 
-            // console.log(this.shadowRoot.getElementById('search-form'));
+            const component = this;
 
             this.shadowRoot.getElementById('button').addEventListener("click", function(e) {
                 e.preventDefault();
-                var value = document.querySelector('[value]').shadowRoot.getElementById('search').value;
-                // console.log(value);
-                document.getElementById("component").setAttribute("value", value);
+                component.value = component.value; // Get the value from the field, and call the setter with that value.
             });
         }
 
         get value() {
-            const value = this.shadowRoot.getElementById('search').getAttribute("value") || '';
+            const value = this.shadowRoot.getElementById('search').value;
             return value;
         }
 
         set value(value) {
-            value = typeof value === "string" ? value : '';
+            this.setAttribute('value', value);
+            this.shadowRoot.getElementById('search').value = value;
             this.shadowRoot.getElementById('search').setAttribute('value', value);
         }
     }

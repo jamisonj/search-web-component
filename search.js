@@ -4,10 +4,8 @@
     const template = `
         <style>
         </style>
-        <form id="search-form">
-            <input id="search" type="search" value=""></input>
-            <button id="button">Search</button>
-        </form>
+        <input id="search" type="search" value=""></input>
+        <button id="button">Search</button>
     `;
 
     class searchBox extends HTMLElement {
@@ -20,8 +18,19 @@
             const component = this;
 
             this.shadowRoot.getElementById('button').addEventListener("click", function(e) {
-                e.preventDefault();
+                // e.preventDefault();
+                console.log(component.value);
                 component.value = component.value; // Get the value from the field, and call the setter with that value.
+
+            });
+
+            this.shadowRoot.getElementById('search').addEventListener("keyup", function(e) {
+                console.log(e.keyCode);
+                if (e.keyCode === 13) {
+                    e.preventDefault();
+                    console.log(component.value);
+                    component.value = component.value; // Get the value from the field, and call the setter with that value.
+                }
             });
         }
 
@@ -37,6 +46,6 @@
         }
     }
 
-    window.customElements.define('search-box', searchBox);
+    window.customElements.define('search-input', searchBox);
 })();
 

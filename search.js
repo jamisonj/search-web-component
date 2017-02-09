@@ -21,11 +21,10 @@
                 // e.preventDefault();
                 console.log(component.value);
                 component.value = component.value; // Get the value from the field, and call the setter with that value.
-
             });
 
             this.shadowRoot.getElementById('search').addEventListener("keyup", function(e) {
-                console.log(e.keyCode);
+                
                 if (e.keyCode === 13) {
                     e.preventDefault();
                     console.log(component.value);
